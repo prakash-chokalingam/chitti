@@ -4,7 +4,7 @@ const validateHeader = 'Google-Dynamite';
 
 exports.handler = function(event, context, callback) {
   let { headers } = event;
-  if (headers['user-agent'] === validateHeader) {
+  if (headers['user-agent'] === validateHeader) { // via Google chat ?
     callback(null, {
       statusCode: 200,
       body: {
