@@ -4,6 +4,9 @@ const validHeader = 'Google-Dynamite';
 
 exports.handler = function(event, context, callback) {
   let { headers, body } = event;
+  console.log(body);
+  console.log('---')
+  console.log(event)
 
   // internal methods
   let replayback = (status, msg) => {
@@ -32,6 +35,7 @@ exports.handler = function(event, context, callback) {
         break;
 
       default:
+        replayback(500, "Invalid request");
         break;
     }
     // callback(null, {
