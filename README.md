@@ -17,9 +17,9 @@ we can use the space id to add the configurations in the aws lambda enviroment.
 
 Each space will have its own configuration.
 
-# [Development](https://github.com/prakash-chokalingam/chitti/tree/netlify-lambda)
+# [Development](https://github.com/prakash-chokalingam/chitti/tree/netlify-lambda#start)
 
-To simulate the functions in local environment you can use the branch [netlify-lambda#branch](https://github.com/prakash-chokalingam/chitti/tree/netlify-lambda), which is configured with the [netlify-lambda devtool](https://github.com/netlify/netlify-lambda).
+To simulate the functions in local environment you can use the branch [netlify-lambda#branch](https://github.com/prakash-chokalingam/chitti/tree/netlify-lambda#start), which is configured with the [netlify-lambda devtool](https://github.com/netlify/netlify-lambda).
 
 https://github.com/netlify/netlify-lambda
 
