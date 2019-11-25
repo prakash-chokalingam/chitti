@@ -1,0 +1,25 @@
+{
+  "name": "chitti",
+  "version": "1.0.0",
+  "description": "Chitti the bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "netlify-lambda serve functions",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prakash-chokalingam/chitti.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prakash-chokalingam/chitti/issues"
+  },
+  "homepage": "https://github.com/prakash-chokalingam/chitti#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "netlify-lambda": "^1.6.3",
+    "node-fetch": "^2.6.0"
+  }
+}
