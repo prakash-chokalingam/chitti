@@ -1,11 +1,11 @@
-# chitti
+# chitti <img src="https://user-images.githubusercontent.com/14071264/69571553-4c96c500-0fe8-11ea-8f72-4789c3974357.jpg" height="50px" width="50px">
 The **Internal** google chat bot
 
 # Idea
 The chitti bot is an internal bot, built with the motive to automate the day-to-day tasks to improve the productivity across the squads.
 
 # Configuration
-The bot is hosted in [aws lambda (staging stack)](https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions/chitti-the-bot?tab=configuration)
+This bot is hosted on [aws lambda (staging stack)](https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions/chitti-the-bot?tab=configuration)
 
 ## space(room) config
 when you add the bot in a chat room, it will
