@@ -5,7 +5,7 @@ The **Internal** google chat bot
 The chitti bot is an internal bot, built with the motive to automate the day-to-day tasks to improve the productivity across the squads.
 
 # Configuration
-This bot is hosted on [aws lambda (staging stack)](https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions/chitti-the-bot?tab=configuration)
+This bot is hosted on aws lambda
 
 ## space(room) config
 when you add the bot in a chat room, it will
