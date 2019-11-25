@@ -25,7 +25,7 @@ https://github.com/netlify/netlify-lambda
 
 > Note: make sure you not uploading the node_modules with `netlify-lambda` and its dependences to the `aws-lambda`.
 
-### <a href="start">Starting server</a>
+### <a id="start">Starting server</a>
 
     npm install && npm start
     
