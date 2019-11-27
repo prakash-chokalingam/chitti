@@ -1,5 +1,6 @@
 const validHeader = 'Google-Dynamite';
 const github = require('./github');
+const freshdesk = require('./freshdesk');
 const validate = require('./utils/validation');
 
 // ALERT: Remove this line on lambda
@@ -144,7 +145,11 @@ const Bot = {
           this.replayback({ text: '*Github* configurations missing' });
           return true;
         }
-        github.checkForOPenPRS(this.config.spaceId, this.callback)
+        github.checkForOPenPRS(this.config.spaceId, this.callback);
+        break;
+
+      case cmd('l2'):
+        freshdesk.checkOpenL2Tickets(this.config, this.replayback.bind(this));
         break;
 
       default:
@@ -157,6 +162,10 @@ const Bot = {
   // help card
   showHelpCard(text = `The things I can do now.`) {
     let helps = [
+      {
+        label: 'l2',
+        description: 'Displays the open L2 tickets'
+      },
       {
         label: 'github',
         description: 'Displays the Github PR statuses'
