@@ -50,7 +50,7 @@ const Freshdesk = {
           buttons: [
             {
               textButton: {
-                text: `RESOLVE TICKET #${id}`,
+                text: `OPEN TICKET`,
                 onClick: {
                   openLink: {
                     url
