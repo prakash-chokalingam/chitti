@@ -1,7 +1,16 @@
 const validHeader = 'Google-Dynamite';
-const github = require('./github');
-const freshdesk = require('./freshdesk');
 const validate = require('./utils/validation');
+
+// Integrations
+const github = require('./integrations/github');
+const freshdesk = require('./integrations/freshdesk');
+
+// doesn't require on lambda
+try {
+  require('dotenv').config();
+} catch(e) {
+  // do nothing
+}
 
 // code revamp
 const Bot = {
@@ -24,8 +33,15 @@ const Bot = {
       let spaceId = `space_${space}`;
       let config = process.env[spaceId];
 
-      // missing config
-      if (!config) {
+      let { type } =  body;
+
+      // added to space
+      if (type === 'ADDED_TO_SPACE') {
+        this.addedToSpace();
+      }
+
+      // check type config before other types
+      else if (!config) {
         this.replayback({
           text: `Missing configurations for this room,`,
           "cards": [
@@ -42,26 +58,16 @@ const Bot = {
         });
         return true;
       }
-      this.config = JSON.parse(process.env[spaceId]);
-      this.config.spaceId = spaceId;
 
+      // type message
+      else if (type === 'MESSAGE') {
+        this.config = JSON.parse(process.env[spaceId]);
+        this.config.spaceId = spaceId;
+        this.handleMessages();
+      }
 
-      switch (body.type) {
-        case 'ADDED_TO_SPACE':
-          this.addedToSpace();
-          break;
-
-        case 'MESSAGE':
-          this.handleMessages();
-          break;
-
-        case 'REMOVED_FROM_SPACE':
-          this.removedFromSpace();
-          break;
-
-        default:
-          this.replayback({ text: "Invalid request" }, 500);
-          break;
+      else {
+        this.replayback({ text: "Invalid request" }, 500);
       }
     } else {
       this.replayback({ text: "Invalid user agent" }, 500);
@@ -160,23 +166,23 @@ const Bot = {
   showHelpCard(text = `The things I can do now.`) {
     let helps = [
       {
-        label: 'l2',
+        label: 'L2',
         description: 'Displays the open L2 tickets'
       },
       {
-        label: 'github',
+        label: 'Github',
         description: 'Displays the Github PR statuses'
       },
       {
-        label: 'room',
-        description: 'Displays the room(space) id for config purpose'
+        label: 'Room',
+        description: 'Displays the room id for configuration'
       },
       {
-        label: 'config',
+        label: 'Config',
         description: 'Displays the configs done for this room'
       },
       {
-        label: 'help',
+        label: 'Help',
         description: 'Displays the list of things which bot can do.'
       }
     ];

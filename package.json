@@ -4,7 +4,9 @@
   "description": "Chitti the bot",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "netlify-lambda serve functions",
+    "build": "node build.js",
+    "test": "jest test/*"
   },
   "repository": {
     "type": "git",
@@ -18,5 +20,14 @@
   "homepage": "https://github.com/prakash-chokalingam/chitti#readme",
   "dependencies": {
     "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "babel-minify": "^0.5.1",
+    "dotenv": "^8.2.0",
+    "glob": "^7.1.6",
+    "jest": "^24.9.0",
+    "netlify-lambda": "^1.6.3",
+    "uglify-js": "^3.7.0",
+    "zip-folder": "^1.0.0"
   }
 }

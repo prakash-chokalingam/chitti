@@ -1,4 +1,4 @@
-# chitti <img src="https://user-images.githubusercontent.com/14071264/69571553-4c96c500-0fe8-11ea-8f72-4789c3974357.jpg" height="50px" width="50px">
+# chitti <img src="https://user-images.githubusercontent.com/14071264/69639773-270ac980-1083-11ea-88a2-61675321cb4a.png" height="50px" width="50px">
 The **Internal** google chat bot
 
 # Idea
@@ -17,12 +17,17 @@ we can use the space id to add the configurations in the aws lambda enviroment.
 
 Each space will have its own configuration.
 
-# [Development](https://github.com/prakash-chokalingam/chitti/tree/netlify-lambda#start)
+# Development
 
-To simulate the functions in local environment you can use the branch [netlify-lambda#branch](https://github.com/prakash-chokalingam/chitti/tree/netlify-lambda#start), which is configured with the [netlify-lambda devtool](https://github.com/netlify/netlify-lambda).
+### Simulating functions in local with [netlify-lambda](https://github.com/netlify/netlify-lambda)
 
-https://github.com/netlify/netlify-lambda
+    npm install && npm start
 
-> Note: make sure you not uploading the node_modules with `netlify-lambda` and its dependences to the `aws-lambda`.
+Should serve the functions locally 🚀
 
+### Uploading code to lambda or other function provider
+    npm run build
 
+  > will generate a build.zip, Happily upload the zip file to your provider.
+
+Happy contributing 🎉
