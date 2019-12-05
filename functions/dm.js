@@ -1,8 +1,4 @@
 class DM {
-  header = null;
-  body = null;
-  callback = null;
-
   constructor(header, body, callback) {
     this.header = header;
     this.body = body;
