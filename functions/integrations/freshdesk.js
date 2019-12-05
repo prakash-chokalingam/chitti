@@ -1,8 +1,9 @@
 const fetch = require("node-fetch").default; // https://github.com/bitinn/node-fetch/issues/450
 
-const Freshdesk = {
+class Freshdesk {
   async checkOpenL2Tickets (config, callback) {
-    let { freshdesk: { domain, group, key } } = config;
+    let { domain, group, key } = config.freshdesk;
+
     let buff = new Buffer.from(`${key}:X`).toString('base64');
     let url = `https://${domain}.freshdesk.com/api/v2/search/tickets?query="group_id:${group} AND status:2"`;
     let tickets = await fetch(url, {

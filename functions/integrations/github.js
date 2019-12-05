@@ -1,7 +1,9 @@
 const fetch = require("node-fetch").default; // https://github.com/bitinn/node-fetch/issues/450
-const Github = {
-  async checkForOPenPRS(spaceId, callback) {
-    let config = JSON.parse(process.env[spaceId]);
+
+class Github {
+  async checkForOPenPRS(config, callback) {
+    let { owner, repos, labels, token } =  config.github;
+
     let response = { cards: [] }
 
     async function getAllRepoInfo(array, callback) {
@@ -11,15 +13,15 @@ const Github = {
     }
 
 
-    await getAllRepoInfo(config.git_repos, async (repo) => {
-      let url = `https://api.github.com/repos/${config.git_owner}/${repo}/issues?state=open&labels=${config.git_labels}`;
+    await getAllRepoInfo(repos, async (repo) => {
+      let url = `https://api.github.com/repos/${owner}/${repo}/issues?state=open&labels=${labels.join(',')}`;
 
 
       // fetch issues
       let issues = await fetch(url, {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${config.git_token}`
+          'Authorization': `Bearer ${token}`
         }
       }).then(res => res.json());
 
@@ -45,7 +47,7 @@ const Github = {
         return await fetch(pull, {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${config.git_token}`
+            'Authorization': `Bearer ${token}`
           },
         }).then(res => res.json());
       }));
@@ -113,10 +115,7 @@ const Github = {
     });
 
     // callback
-    callback(null, {
-      statusCode: 200,
-      body: JSON.stringify(response)
-    })
+    callback(response)
   }
 }
 

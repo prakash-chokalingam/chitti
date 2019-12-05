@@ -7,7 +7,7 @@ const minify = require("babel-minify");
 const fsExtra = require('fs-extra');
 const zipFolder = require('zip-folder');
 
-const REQUIRED_NODE_MODULES = ['node-fetch']; // node_modules needs to be added in the zip
+const REQUIRED_NODE_MODULES = ['node-fetch', 'moment']; // node_modules needs to be added in the zip
 
 const BUILD_PATH = resolve('./build');
 
