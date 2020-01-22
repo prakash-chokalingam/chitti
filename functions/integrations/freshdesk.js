@@ -16,37 +16,8 @@ class Freshdesk {
       response.text = '<users/all> Hurray! great work folks 🎉'
     }
 
-    // tickets info
-    response.cards.push({
-      sections: [{
-        widgets: [
-          {
-            keyValue: {
-              topLabel: '',
-              content: `L2 Open Tickets (${openTicketResult.length})`,
-              icon: 'TICKET'
-            }
-          },
-        ]
-      }]
-    });
-    response.cards.push({
-      sections: [{
-        widgets: [
-          {
-            keyValue: {
-              topLabel: '',
-              content: `L2 Pending Tickets (${pendingTicketResult.length})`,
-              icon: 'TICKET'
-            }
-          },
-        ]
-      }],
-    });
-
-
-    this.appendTicketsToCard(response, openTicketResult, domain, 0)
-    this.appendTicketsToCard(response, pendingTicketResult, domain, 1)
+    this.appendTicketsToCard(response, openTicketResult, domain, `L2 Open Tickets (${openTicketResult.length})`)
+    this.appendTicketsToCard(response, pendingTicketResult, domain, `L2 Pending Tickets (${pendingTicketResult.length})`)
 
     let results = openTicketResult.concat(pendingTicketResult);
     // consolidated
@@ -79,7 +50,25 @@ class Freshdesk {
     return ticketResults;
   };
 
-  appendTicketsToCard(response, result, domain, index) {
+  appendTicketsToCard(response, result, domain, message) {
+    
+    // create card
+    response.cards.push({
+      sections: [{
+        widgets: [
+          {
+            keyValue: {
+              topLabel: '',
+              content: message,
+              icon: 'TICKET'
+            }
+          },
+        ]
+      }]
+    });
+
+    let index = response.cards.length - 1;
+
     result.forEach(ticket => {
       let { id, subject, due_by } = ticket;
       let url =  `${domain}.freshdesk.com/a/tickets/${id}`;
