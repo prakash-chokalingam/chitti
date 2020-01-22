@@ -82,7 +82,7 @@ class Freshdesk {
       response.cards[index].sections.push({
         widgets: [{
           textParagraph: {
-            text: `${isOverdue} <b>#${id}</b> - ${subject} \n${deadLineText}`
+            text: `${isOverdue} <b>#${id}</b> - ${this.cleanupHtml(subject)} <br>${deadLineText}`
           },
           buttons: [
             {
@@ -100,6 +100,10 @@ class Freshdesk {
       })
     });
   };
+
+  cleanupHtml(content) {
+    return content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
 }
 
 module.exports = Freshdesk;
