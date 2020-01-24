@@ -2,6 +2,10 @@ const fetch = require("node-fetch").default; // https://github.com/bitinn/node-f
 const moment = require('moment');
 
 class Freshdesk {
+  constructor () {
+    this.overdueTicketsCount = 0;
+  }
+  
   async checkOpenL2Tickets (config, callback) {
     let { domain, group, key } = config.freshdesk;
 
@@ -10,24 +14,24 @@ class Freshdesk {
     let openTicketResult = await this.fetchTickets(domain, group, 2, buff)
     let pendingTicketResult = await this.fetchTickets(domain, group, 3, buff)
     let response = { cards: [] }
-    let total = openTicketResult.length + pendingTicketResult.length;
+    let openTicketsCount = openTicketResult.length;
+    let pendingTicketsCount = pendingTicketResult.length;
+
+    let total = openTicketsCount + pendingTicketsCount;
 
     if (!total) {
       response.text = '<users/all> Hurray! great work folks 🎉'
     }
 
-    this.appendTicketsToCard(response, openTicketResult, domain, `L2 Open Tickets (${openTicketResult.length})`)
-    this.appendTicketsToCard(response, pendingTicketResult, domain, `L2 Pending Tickets (${pendingTicketResult.length})`)
+    this.appendTicketsToCard(response, openTicketResult, domain, `L2 Open Tickets (${openTicketsCount})`)
+    this.appendTicketsToCard(response, pendingTicketResult, domain, `L2 Pending Tickets (${pendingTicketsCount})`)
 
-    let results = openTicketResult.concat(pendingTicketResult);
-    // consolidated
-    let overdued = results.filter(ticket => ticket.is_escalated).length;
-    if (overdued) {
+    if (this.overdueTicketsCount) {
       response.cards.push({
         sections: [{
           widgets: [{
               textParagraph: {
-              text: `<font color=\"#ff0000\">Total overdue tickets: <b>${overdued}</b></font>`
+              text: `<font color=\"#ff0000\">Total overdue tickets: <b>${this.overdueTicketsCount}</b></font>`
             }
           }]
         }]
@@ -35,7 +39,6 @@ class Freshdesk {
     }
 
     callback(response)
-
   }
 
   async fetchTickets(domain, group, status, buff) {
@@ -50,36 +53,33 @@ class Freshdesk {
     return ticketResults;
   };
 
-  appendTicketsToCard(response, result, domain, message) {
-    
-    // create card
-    response.cards.push({
-      sections: [{
+  // creates card
+  appendTicketsToCard(response, result, domain, message) {   
+      let sections = [{
         widgets: [
           {
             keyValue: {
               topLabel: '',
-              content: message,
+              content: `<b>${message}</b>`,
               icon: 'TICKET'
             }
           },
         ]
       }]
-    });
-
-    let index = response.cards.length - 1;
 
     result.forEach(ticket => {
       let { id, subject, due_by } = ticket;
       let url =  `${domain}.freshdesk.com/a/tickets/${id}`;
       subject = (subject.length > 60) ? `${subject.substring(0, 60)}...` : subject;
 
-      let isEscalated = moment().diff(moment(due_by)) > 0
+      let isEscalated = moment().diff(moment(due_by)) > 0;
+      isEscalated && this.overdueTicketsCount++;
+      
       let isOverdue = (isEscalated) ? '<font color=\"#ff0000\"><b>(overdue)</b></font>': '';
       let dueBy = moment(due_by).fromNow(true);
-      let deadLineText = (moment().diff(moment(due_by)) > 0) ? `<b>Overdue by: ${dueBy}</b>` : `<b>Due in: ${dueBy}</b>`
+      let deadLineText = (isEscalated) ? `<b>Overdue by: ${dueBy}</b>` : `<b>Due in: ${dueBy}</b>`
 
-      response.cards[index].sections.push({
+      sections.push({
         widgets: [{
           textParagraph: {
             text: `${isOverdue} <b>#${id}</b> - ${this.cleanupHtml(subject)} <br>${deadLineText}`
@@ -99,6 +99,8 @@ class Freshdesk {
         }]
       })
     });
+
+    response.cards.push({ sections });
   };
 
   cleanupHtml(content) {
