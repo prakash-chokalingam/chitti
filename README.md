@@ -2,6 +2,9 @@
 The **Internal** google chat bot
 
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/prakash-chokalingam/chitti/issues)
+[![node version](https://img.shields.io/badge/node-%3E=12-brightgreen.svg?style=flat)](https://github.com/prakash-chokalingam/chitti/issues)
+
+
 
 # Idea
 The chitti bot is an internal bot, built with the motive to automate the day-to-day tasks to improve the productivity across the squads.
