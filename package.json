@@ -27,11 +27,12 @@
   "devDependencies": {
     "babel-minify": "^0.5.1",
     "dotenv": "^8.2.0",
+    "fs-extra": "^8.1.0",
     "glob": "^7.1.6",
     "jest": "^24.9.0",
+    "moment": "^2.24.0",
     "netlify-lambda": "^1.6.3",
     "uglify-js": "^3.7.0",
-    "zip-folder": "^1.0.0",
-    "moment": "^2.24.0"
+    "zip-folder": "^1.0.0"
   }
 }
