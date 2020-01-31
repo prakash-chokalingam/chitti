@@ -18,7 +18,7 @@ exports.handler = function (event, context, callback) {
   // validate client
   let userAgent = headers['User-Agent'] || headers['user-agent']; // camel cased is for aws lambda
   if (userAgent !== validHeader) { // via Google chat ?
-    throwError();
+    return throwError();
   }
 
   let parsedBody;
