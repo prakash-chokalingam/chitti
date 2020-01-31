@@ -3,6 +3,7 @@ The **Internal** google chat bot
 
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/prakash-chokalingam/chitti/issues)
 [![node version](https://img.shields.io/badge/node-%3E=12-brightgreen.svg?style=flat)](https://github.com/prakash-chokalingam/chitti/issues)
+![Test Build](https://github.com/prakash-chokalingam/chitti/workflows/Test%20Build/badge.svg?branch=master)
 
 
 
