@@ -7,7 +7,7 @@ The **Internal** google chat bot
 
 
 
-# Idea
+# Ideas
 The chitti bot is an internal bot, built with the motive to automate the day-to-day tasks to improve the productivity across the squads.
 
 # Configuration
