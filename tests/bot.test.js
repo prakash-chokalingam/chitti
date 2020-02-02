@@ -17,8 +17,12 @@ beforeEach(() => {
   process.env.space_test = {};
 });
 
-test('it throws 500 when body params is not a valid JSON', () => {
-  BOT.handler(EVENT_STUB, null, FnMock)
+test('it throws 500 when requested client is not google chat', () => {
+  const stub_copy = Object.assign({}, EVENT_STUB);
+  // change user agent
+  stub_copy.headers['user-agent'] = 'slack';
+
+  BOT.handler(stub_copy, null, FnMock)
   expect(FnMock.mock.results[0].value.statusCode).toBe(500);
 });
 
