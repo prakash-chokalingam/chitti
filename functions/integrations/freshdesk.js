@@ -10,6 +10,7 @@ class Freshdesk {
     let { domain, group, key } = config.freshdesk;
 
     let buff = new Buffer.from(`${key}:X`).toString('base64');
+    let matter = 1
 
     let openTicketResult = await this.fetchTickets(domain, group, 2, buff)
     let pendingTicketResult = await this.fetchTickets(domain, group, 3, buff)
