@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const fetch = require("node-fetch").default;
 const moment = require('moment');
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const fetch = require("node-fetch").default; // https://github.com/bitinn/node-fetch/issues/450
 
 class Github {
