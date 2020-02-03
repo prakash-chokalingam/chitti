@@ -66,11 +66,11 @@ class Room {
         break;
 
       case 'room':
-        this.showSpacename(true)
+        this.showSpacename(true);
         break;
 
       case 'github':
-        hasValidConfig = validateConfig(this.config, 'github')
+        hasValidConfig = validateConfig(this.config, 'github');
         if (!hasValidConfig) {
           this.missingConfiguration('*Github* configurations missing for this room');
           return true;
@@ -79,7 +79,7 @@ class Room {
         break;
 
       case 'l2':
-        hasValidConfig = validateConfig(this.config, 'freshdesk')
+        hasValidConfig = validateConfig(this.config, 'freshdesk');
          if (!hasValidConfig) {
           this.missingConfiguration('*Freshdesk* configurations missing for this room');
           return true;
@@ -149,7 +149,7 @@ class Room {
           ],
         }
       ]
-    })
+    });
   }
 
 

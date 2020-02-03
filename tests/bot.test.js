@@ -22,7 +22,7 @@ test('it throws 500 when requested client is not google chat', () => {
   // change user agent
   stub_copy.headers['user-agent'] = 'slack';
 
-  BOT.handler(stub_copy, null, FnMock)
+  BOT.handler(stub_copy, null, FnMock);
   expect(FnMock.mock.results[0].value.statusCode).toBe(500);
 });
 

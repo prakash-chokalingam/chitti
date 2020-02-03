@@ -34,8 +34,8 @@ exports.handler = function (event, context, callback) {
       throw new Error();
     }
   } catch (e) { // for request with invalid body
-    console.log(e)
+    console.log(e);
     throwError();
     return;
   }
-}
+};
