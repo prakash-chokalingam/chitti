@@ -25,7 +25,7 @@ class DM {
           ]
         }
       ]
-    })
+    });
   }
 
   // execute callback

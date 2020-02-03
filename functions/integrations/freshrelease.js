@@ -102,7 +102,7 @@ class Freshrelease {
     });
 
     // callback
-    callback(response)
+    callback(response);
   }
 
   async fetch(path, freshrelease) {

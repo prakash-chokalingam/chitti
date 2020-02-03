@@ -34,7 +34,7 @@ files.forEach(file => {
     console.log(`Failed minimizing: ${file}`);
     console.log(e);
   }
-})
+});
 
 
 // copy node_modules

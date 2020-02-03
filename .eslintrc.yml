@@ -9,4 +9,7 @@ globals:
   SharedArrayBuffer: readonly
 parserOptions:
   ecmaVersion: 2018
-rules: {}
+rules: {
+  "semi": ["error", "always"],
+  "no-trailing-spaces": ["error"]
+}

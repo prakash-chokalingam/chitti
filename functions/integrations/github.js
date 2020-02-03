@@ -4,11 +4,11 @@ class Github {
   async checkForOPenPRS(config, callback) {
     let { owner, repos, labels, token } =  config.github;
 
-    let response = { cards: [] }
+    let response = { cards: [] };
 
     async function getAllRepoInfo(array, callback) {
       for (let index = 0; index < array.length; index++) {
-        await callback(array[index])
+        await callback(array[index]);
       }
     }
 
@@ -62,7 +62,7 @@ class Github {
         if (reviewers.length) {
           msg = `<font color=\"#808080\">pending reviewers: ${reviewers.join(',')}</font>`;
         } else if (comments) {
-          msg = `<font color=\"#dbab08\">Has review comments</font>`
+          msg = `<font color=\"#dbab08\">Has review comments</font>`;
         }
 
 
@@ -115,7 +115,7 @@ class Github {
     });
 
     // callback
-    callback(response)
+    callback(response);
   }
 }
 
