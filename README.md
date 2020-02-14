@@ -1,5 +1,5 @@
 # chitti <img src="https://user-images.githubusercontent.com/14071264/69639773-270ac980-1083-11ea-88a2-61675321cb4a.png" height="50px" width="50px">
-The **Internal** google chat bot
+The **Internal** chat bot
 
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/prakash-chokalingam/chitti/issues)
 [![node version](https://img.shields.io/badge/node-%3E=12-brightgreen.svg?style=flat)](https://github.com/prakash-chokalingam/chitti/issues)
@@ -9,7 +9,7 @@ The **Internal** google chat bot
 
 
 # Idea
-The chitti bot is an internal bot, built with the motive to automate the day-to-day tasks to improve the productivity across the squads.
+The chitti bot is an internal chat bot, built with the motive to automate the day-to-day tasks to improve the productivity across the squads.
 
 # Configuration
 This bot is hosted on aws lambda
